@@ -1,0 +1,402 @@
+{
+	"variables": [],
+	"info": {
+		"name": "users",
+		"_postman_id": "76386b5c-a655-0f43-4fed-b0003a563657",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:4000/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Returns a token\"] = ( typeof(jsonData.token) !== 'undefined' && jsonData.token );",
+							"",
+							"postman.setEnvironmentVariable(\"token\", jsonData.token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:4000/login",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "postman",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "goodpasswd",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "good log in"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/api/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Returns a list\"] = ( typeof(jsonData) === 'object' && Array.isArray(jsonData) );"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:4000/api/users",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "postman",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "goodpasswd",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "get users list"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/api/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:4000/api/users",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "postman",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "goodpasswd",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/api/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:4000/api/users",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "postman",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "goodpasswd",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/api/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 404\"] = responseCode.code === 404;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:4000/api/users",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "postman",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "goodpasswd",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "create user without auth",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:4000/api/user",
+				"method": "POST",
+				"header": [
+					{
+						"key": "//Authorization",
+						"value": "{{token}}",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "postman-test",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "pass",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "mail",
+							"value": "tmp@postman.test",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "category",
+							"value": "jsaispas",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "premium",
+							"value": "false",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "get users list"
+			},
+			"response": []
+		},
+		{
+			"name": "wrong user creation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 500\"] = responseCode.code === 500;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:4000/api/user",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "postman",
+							"type": "text",
+							"enabled": false
+						},
+						{
+							"key": "password",
+							"value": "goodpasswd",
+							"type": "text",
+							"enabled": false
+						}
+					]
+				},
+				"description": "get users list"
+			},
+			"response": []
+		},
+		{
+			"name": "good user creation",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:4000/api/user",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{token}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "postman-test",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "pass",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "mail",
+							"value": "tmp@postman.test",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "category",
+							"value": "jsaispas",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "premium",
+							"value": "false",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "get users list"
+			},
+			"response": []
+		}
+	]
+}

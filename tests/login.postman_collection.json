@@ -1,0 +1,192 @@
+{
+	"variables": [],
+	"info": {
+		"name": "login",
+		"_postman_id": "cb396ecf-a5b6-47fd-eb95-f0d9b6cd016d",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:4000/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:4000/login",
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "get login"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:4000/login",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "post login"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:4000/login",
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "delete login"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:4000/login",
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "put login"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 401\"] = responseCode.code === 401;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:4000/login",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "postman",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "wrongpasswd",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "bad log in"
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:4000/login",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"Returns a token\"] = ( typeof(jsonData.token) !== 'undefined' && jsonData.token );",
+							"",
+							"postman.setEnvironmentVariable(\"token\", jsonData.token);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "localhost:4000/login",
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "username",
+							"value": "postman",
+							"type": "text",
+							"enabled": true
+						},
+						{
+							"key": "password",
+							"value": "goodpasswd",
+							"type": "text",
+							"enabled": true
+						}
+					]
+				},
+				"description": "good log in"
+			},
+			"response": []
+		}
+	]
+}

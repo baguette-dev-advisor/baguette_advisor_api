@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Baguette Advisor Account Password Reset</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+    <style>
+      img {
+        position: relative;
+        top: 10px;
+        height: auto;
+        width: 50px;
+      }
+      .centerstuff {
+        position: relative;
+        left: 45%;
+      }
+      /* label focus color */
+      .input-field input:focus + label {
+        color: blue !important;
+      }
+      /* label underline focus color */
+      .row .input-field input:focus {
+        border-bottom: 1px solid blue !important;
+        box-shadow: 0 1px 0 0 blue !important;
+      }
+    </style>
+</head>
+<body>
+   <nav>
+    <div class="nav-wrapper amber">
+    <a class="brand-logo center"><img src="https://www.baguetteadvisor.com/wp-content/uploads/2017/01/cropped-logo_baguette_advisor.png"/></a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+      </ul>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col s12 m12">
+          <div class="card">
+            <div class="card-content black-text">
+              <span class="card-title">Perfect ! you got your token</span>
+              <p>Please enter your new password below (twice, just to be sure) and it will be updated</p>
+              <div class="input-field">
+                <input id="pass_trial1" type="password" class="validate" placeholder="new password">
+                <label for="pass_trial1">Type in your new password</label>
+              </div>
+              <div class="input-field">
+                <input id="pass_trial2" type="password" class="validate" placeholder="new password">
+                <label for="pass_trial2">Type it again</label>
+              </div>
+            </div>
+            <div class="card-action">
+              <a class="waves-effect waves-light amber btn centerstuff" onclick="extract()">Submit</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</body>
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+<script>
+  function extract() {
+    var input1 = document.getElementById('pass_trial1').value
+    var input2 = document.getElementById('pass_trial2').value
+    if( input2 != input1 ){
+      alert('Password does not match')
+      return
+    }
+    if( input2.length < 8 ){
+      alert('Password too short : require at least 8 characters')
+      return
+    }
+    var baseurl = window.location.href
+    var token = baseurl.substr(baseurl.lastIndexOf('/') + 1)
+    var url = location.protocol+'//'+location.host+"/user"
+    var xhr = new XMLHttpRequest();
+    xhr.open("PATCH", url, true);
+    xhr.setRequestHeader("Content-type", "application/json");
+    xhr.setRequestHeader("Authorization", token);
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+          alert('Password updated')
+          console.log(JSON.parse(xhr.responseText));
+        }
+    };
+    var data = JSON.stringify({"password":input2});
+    xhr.send(data);
+  }
+</script>
+</html>

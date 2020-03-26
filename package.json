@@ -1,0 +1,41 @@
+{
+  "name": "bapi",
+  "version": "1.0.0",
+  "description": "API for baguette advisor",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js"
+  },
+  "repository": "git@github.com:nd4pa/bapi.git",
+  "license": "MIT",
+  "devDependencies": {
+    "nodemon": "^1.17.5"
+  },
+  "dependencies": {
+    "aes256": "^1.0.3",
+    "async": "^2.6.1",
+    "base64url": "^3.0.0",
+    "bcrypt": "^2.0.1",
+    "body-parser": "^1.18.3",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "express-rate-limit": "^2.11.0",
+    "geolib": "^2.0.24",
+    "js-sha512": "^0.4.0",
+    "jsonwebtoken": "^8.2.1",
+    "mongoose": "^4.13.14",
+    "multer": "^1.3.0",
+    "node-fetch": "^2.1.2",
+    "node-mailjet": "^3.2.1",
+    "nodemailer": "^3.1.8",
+    "path": "^0.12.7",
+    "pg": "^7.4.3",
+    "piexifjs": "^1.0.4",
+    "pkgcloud": "^1.5.0",
+    "rand-token": "^0.3.0",
+    "stream-buffers": "^3.0.2",
+    "streamifier": "^0.1.1",
+    "uuid": "^3.2.1"
+  }
+}
